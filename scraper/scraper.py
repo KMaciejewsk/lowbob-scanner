@@ -12,7 +12,7 @@ def fetch_latest_game_info():
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
 
-    with open('config.json', 'r', encoding='utf-8') as f:
+    with open('config/config.json', 'r', encoding='utf-8') as f:
         config = json.load(f)
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
