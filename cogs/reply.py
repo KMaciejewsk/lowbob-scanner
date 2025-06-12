@@ -40,7 +40,12 @@ class ReplyCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.author.bot:
+        with open('config/channels.json', 'r', encoding='utf-8') as f:
+            guild_channel_map = json.load(f)
+        channel_ids = list(guild_channel_map.values())
+        channels = [self.bot.get_channel(cid) for cid in channel_ids if self.bot.get_channel(cid) is not None]
+
+        if message.author.bot or message.channel not in channels:
             return
 
         ctx = await self.bot.get_context(message)

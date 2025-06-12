@@ -47,6 +47,7 @@ class LowbobDetector(commands.Cog):
                         msg = f"{ai_text}\n<{SUMMONER_URL}>"
                         for ch in channels:
                             await ch.send(msg)
+                            print(f"{datetime.now().strftime('%H:%M:%S')} - Message: {msg}")
 
                     self.last_match_id = match_id
                     print(f"{datetime.now().strftime('%H:%M:%S')} - New match found.")
