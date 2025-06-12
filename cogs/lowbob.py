@@ -25,18 +25,19 @@ class LowbobDetector(commands.Cog):
     async def check_new_game(self):
         await self.bot.wait_until_ready()
 
-        with open('config/channels.json', 'r', encoding='utf-8') as f:
-            guild_channel_map = json.load(f)
-        channel_ids = list(guild_channel_map.values())
-        channels = [self.bot.get_channel(cid) for cid in channel_ids if self.bot.get_channel(cid) is not None]
-
         while not self.bot.is_closed():
             try:
                 loop = asyncio.get_event_loop()
+
+                with open('config/channels.json', 'r', encoding='utf-8') as f:
+                    guild_channel_map = json.load(f)
+                channel_ids = list(guild_channel_map.values())
+                channels = [self.bot.get_channel(cid) for cid in channel_ids if self.bot.get_channel(cid) is not None]
+
                 match_id, ai_score, champ_name, kda, result = await loop.run_in_executor(None, fetch_latest_game_info)
 
                 print(f"{datetime.now().strftime('%H:%M:%S')} - Last game stats: Game ID: {match_id} Champion: {champ_name} KDA:{kda} AI-Score: {ai_score} Result: {result}")
-
+                print(f"{datetime.now().strftime('%H:%M:%S')} - Channels: {[ch.name for ch in channels]}")
                 if match_id and match_id != self.last_match_id:
                     if self.last_match_id is not None:
                         ai_text = await loop.run_in_executor(

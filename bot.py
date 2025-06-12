@@ -18,6 +18,7 @@ async def on_ready():
     await bot.load_extension("cogs.setchannel")
     await bot.load_extension("cogs.commands")
     await bot.load_extension("cogs.lowbob")
+    await bot.load_extension("cogs.reply")
 
 def load_channels():
     if os.path.exists("config/channels.json"):

@@ -12,6 +12,10 @@ This project uses several configuration files and environment variables to store
 - `config/channels.example.json`  
   You will add channels with commands anyways so just change name to `channels.json`.
 
+- `config/users.example.json`
+  You will add users with commands anyways so just change name to `users.json`.
+
+
 - `.env.example`  
   Input your own `OPENAI_API_KEY` and `DISCORD_BOT_TOKEN` here. You can get them at [OpenAI](https://platform.openai.com/signup) and [Discord Developer Portal](https://discord.com/developers/applications).
   Rename this file to `.env` and add your real secrets.
@@ -41,3 +45,5 @@ This project uses several configuration files and environment variables to store
 - `>help` - shows all commands
 - `>setchannel` - type it in channel you want the bot to type in
 - `>unsetchannel` - type it in channel you want to remove the bot from
+- `addreply @user` - set bot to reply to users messages
+- `removereply @user` - stop bot from replying to users messages
