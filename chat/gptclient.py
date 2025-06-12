@@ -1,7 +1,7 @@
 import openai
 import json
 
-with open('config.json', 'r', encoding='utf-8') as f:
+with open('config/config.json', 'r', encoding='utf-8') as f:
     config = json.load(f)
 
 ANNOUNCEMENT_PROMPT = config['announcement_prompt']

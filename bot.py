@@ -20,13 +20,13 @@ async def on_ready():
     await bot.load_extension("cogs.lowbob")
 
 def load_channels():
-    if os.path.exists("channels.json"):
-        with open("channels.json", "r") as f:
+    if os.path.exists("config/channels.json"):
+        with open("config/channels.json", "r") as f:
             return json.load(f)
     return {}
 
 def save_channels(data):
-    with open("channels.json", "w") as f:
+    with open("config/channels.json", "w") as f:
         json.dump(data, f, indent=4)
 
 bot.channels = load_channels()

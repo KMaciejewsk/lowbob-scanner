@@ -8,11 +8,7 @@ from scraper.scraper import fetch_latest_game_info
 
 load_dotenv()
 
-with open('channels.json', 'r', encoding='utf-8') as f:
-    guild_channel_map = json.load(f)
-CHANNEL_IDS = list(guild_channel_map.values())
-
-with open('config.json', 'r', encoding='utf-8') as f:
+with open('config/config.json', 'r', encoding='utf-8') as f:
     config = json.load(f)
 SUMMONER_URL = config['summoner_url']
 
@@ -28,7 +24,11 @@ class LowbobDetector(commands.Cog):
 
     async def check_new_game(self):
         await self.bot.wait_until_ready()
-        channels = [self.bot.get_channel(cid) for cid in CHANNEL_IDS if self.bot.get_channel(cid) is not None]
+
+        with open('config/channels.json', 'r', encoding='utf-8') as f:
+            guild_channel_map = json.load(f)
+        channel_ids = list(guild_channel_map.values())
+        channels = [self.bot.get_channel(cid) for cid in channel_ids if self.bot.get_channel(cid) is not None]
 
         while not self.bot.is_closed():
             try:
@@ -38,7 +38,7 @@ class LowbobDetector(commands.Cog):
                 print(f"{datetime.now().strftime('%H:%M:%S')} - Last game stats: Game ID: {match_id} Champion: {champ_name} KDA:{kda} AI-Score: {ai_score} Result: {result}")
 
                 if match_id and match_id != self.last_match_id:
-                    if self.last_match_id is  None:
+                    if self.last_match_id is not None:
                         ai_text = await loop.run_in_executor(
                             None, self.gpt_client.get_ai_announcement, champ_name, kda, ai_score, result
                         )

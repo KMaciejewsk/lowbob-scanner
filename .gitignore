@@ -3,6 +3,6 @@
 .env
 __pycache__/
 *.pyc
-channels.json
-config.json
+config/channels.json
+config/config.json
 
