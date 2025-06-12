@@ -56,7 +56,7 @@ class LowbobDetector(commands.Cog):
             except Exception as e:
                 print(f"Error in background task: {e}")
 
-            await asyncio.sleep(270)
+            await asyncio.sleep(150)
 
 async def setup(bot):
     from os import getenv

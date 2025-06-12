@@ -35,7 +35,16 @@ This project uses several configuration files and environment variables to store
 3. Make sure you have Python 3.10 or higher installed.
 
 
-4. Run the bot:
+4. Create the necessary configuration files:
+   - Copy `config/config.example.json` to `config/config.json` and edit it.
+   - Copy `config/channels.example.json` to `config/channels.json`.
+   - Copy `config/users.example.json` to `config/users.json`.
+   - Copy `.env.example` to `.env` and fill in your OpenAI API key and Discord bot token.
+   
+   Make sure you have the correct permissions set for the bot in your Discord server.
+
+
+5. Run the bot:
    ```bash
    python bot.py
    ```

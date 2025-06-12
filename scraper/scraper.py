@@ -17,19 +17,19 @@ def fetch_latest_game_info():
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.get(config['summoner_url'])
-    time.sleep(10)
+    time.sleep(30)
 
     try:
         consent_button = driver.find_element(By.XPATH, "//button[contains(., 'Consent')]")
         consent_button.click()
-        time.sleep(10)
+        time.sleep(30)
     except Exception:
         pass
 
     try:
         update_button = driver.find_element(By.XPATH, "//button[contains(., 'Updated')]")
         update_button.click()
-        time.sleep(10)
+        time.sleep(30)
     except Exception:
         pass
 
