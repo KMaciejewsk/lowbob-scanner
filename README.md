@@ -33,5 +33,11 @@ This project uses several configuration files and environment variables to store
 
 4. Run the bot:
    ```bash
-   python main.py
+   python bot.py
    ```
+   
+## Bot Commands
+
+- `>help` - shows all commands
+- `>setchannel` - type it in channel you want the bot to type in
+- `>unsetchannel` - type it in channel you want to remove the bot from
