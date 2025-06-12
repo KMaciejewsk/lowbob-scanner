@@ -54,5 +54,5 @@ This project uses several configuration files and environment variables to store
 - `>help` - shows all commands
 - `>setchannel` - type it in channel you want the bot to type in
 - `>unsetchannel` - type it in channel you want to remove the bot from
-- `addreply @user` - set bot to reply to users messages
-- `removereply @user` - stop bot from replying to users messages
+- `>addreply @user` - set bot to reply to users messages
+- `>removereply @user` - stop bot from replying to users messages
