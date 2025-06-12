@@ -1,8 +1,10 @@
 # Project Configuration
 
-This project uses several configuration files and environment variables to store sensitive information and customizable settings. To keep your real configuration secure and avoid committing sensitive data to the repository, **example files** are provided.
 
 ## Configuration Files
+
+This project uses several configuration files and environment variables to store sensitive information and customizable settings. To keep your real configuration secure and avoid committing sensitive data to the repository, **example files** are provided.
+
 
 - `config/config.example.json`  
   Just replace deeplol link (must be deeplol) and prompt. Change name to `config.json`.  
