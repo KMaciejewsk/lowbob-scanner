@@ -57,22 +57,24 @@ class ReplyCog(commands.Cog):
 
         if user_id in self.reply_users["users"]:
             last_time = self.last_reply_time.get(user_id, 0)
-            if now - last_time >= 60:
+            if now - last_time >= 5:
                 self.last_reply_time[user_id] = now
 
                 try:
-                    previous_bot_message = ""
-                    async for msg in message.channel.history(limit=50, before=message.created_at):
-                        if msg.author == self.bot.user:
-                            previous_bot_message = msg.content
-                            break
+                    history = []
+                    async for msg in message.channel.history(limit=10, before=message.created_at, oldest_first=False):
+                        history.append(msg)
+                    history.reverse()
+
+                    context_messages = []
+                    for msg in history:
+                        context_messages.append(f"{msg.author.display_name}: {msg.content}")
+                    context_messages.append(f"{message.author.display_name}: {message.content}")
 
                     reply = await self.bot.loop.run_in_executor(
                         None,
                         self.gpt.get_reply_to_message,
-                        message.author.display_name,
-                        message.content,
-                        previous_bot_message
+                        context_messages
                     )
 
                     if reply:

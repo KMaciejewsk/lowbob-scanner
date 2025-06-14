@@ -16,14 +16,8 @@ def build_announcement_prompt(champ_name, kda, ai_score, result):
     )
     return ANNOUNCEMENT_PROMPT + stats_section
 
-def build_reply_prompt(username, content, previous_message=""):
-    prompt = REPLY_PROMPT
-    prompt += (
-        f"User: {username}\n"
-        f"Message: {content}\n"
-        f"Previous message: {previous_message}\n"
-    )
-    return prompt
+def build_reply_prompt(messages_list):
+    return REPLY_PROMPT + "\n" + "\n".join(messages_list)
 
 
 class GPTClient:
@@ -42,9 +36,9 @@ class GPTClient:
         )
         return response.choices[0].message.content.strip()
 
-    def get_reply_to_message(self, username, content, previous_message=""):
-        full_prompt = build_reply_prompt(username, content, previous_message)
-        print("DEBUG prompt:", full_prompt)
+    def get_reply_to_message(self, messages_list):
+        full_prompt = build_reply_prompt(messages_list)
+        print(f"Full prompt for reply: {full_prompt}")
         response = self.client.chat.completions.create(
             model="gpt-4o",
             messages=[{"role": "user", "content": full_prompt}],
