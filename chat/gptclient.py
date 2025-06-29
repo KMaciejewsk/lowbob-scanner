@@ -38,11 +38,10 @@ class GPTClient:
 
     def get_reply_to_message(self, messages_list):
         full_prompt = build_reply_prompt(messages_list)
-        print(f"Full prompt for reply: {full_prompt}")
         response = self.client.chat.completions.create(
             model="gpt-4o",
             messages=[{"role": "user", "content": full_prompt}],
-            max_tokens=100,
+            max_tokens=200,
             temperature=1.0
         )
         return response.choices[0].message.content.strip()
